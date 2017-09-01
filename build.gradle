@@ -1,0 +1,35 @@
+group 'com.romeshselvan.jacko'
+version '1.0.0-SNAPSHOT'
+
+allprojects {
+
+    buildscript {
+        ext.kotlin_version = '1.1.4'
+
+        repositories {
+            mavenCentral()
+        }
+        dependencies {
+            classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+            // Needed for the 'org.springframework.boot' plugin
+            classpath "org.springframework.boot:spring-boot-gradle-plugin:1.5.6.RELEASE"
+            // Needed for the 'kotlin-spring' plugin
+            classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version"
+            // Needed for Kotlin - Spring Data integration to keep boiler code away from POJOs
+            classpath "org.jetbrains.kotlin:kotlin-noarg:$kotlin_version"
+        }
+    }
+
+    // Allows us to compile Kotlin files
+    apply plugin: 'kotlin'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+        compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+        testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+    }
+}

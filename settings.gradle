@@ -1,0 +1,4 @@
+rootProject.name = 'jacko-users'
+
+include 'jacko-users-client', 'jacko-users-service'
+

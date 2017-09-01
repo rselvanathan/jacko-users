@@ -1,0 +1,37 @@
+// Does some extra work to set up Spring Boot.
+// Specifically this gives us the "bootRun" task we will be using
+apply plugin: 'org.springframework.boot'
+// Allows for improved interop between Kotlin and Spring
+apply plugin: 'kotlin-spring'
+// Applies a no-arg constructor to POJOs for better interop between Kotlin and Spring Data
+apply plugin: "kotlin-noarg"
+noArg {
+    annotation("org.springframework.data.mongodb.core.mapping.Document")
+}
+
+group 'com.romeshselvan.jacko'
+version '1.0.0-SNAPSHOT'
+
+
+dependencies {
+    // Spring Dependencies
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile "org.springframework.boot:spring-boot-starter-data-mongodb"
+
+    // Test Dependencies
+    testCompile "org.springframework.boot:spring-boot-starter-test"
+    testCompile group: 'com.jayway.restassured', name: 'rest-assured', version: '2.9.0'
+    testCompile "de.flapdoodle.embed:de.flapdoodle.embed.mongo:2.0.0"
+
+
+    // Jackson Dependencies
+    compile "com.fasterxml.jackson.core:jackson-annotations"
+    compile "com.fasterxml.jackson.core:jackson-core"
+    compile "com.fasterxml.jackson.core:jackson-databind"
+    compile "com.fasterxml.jackson.datatype:jackson-datatype-jdk8"
+    compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
+    compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.0"
+
+    //Others
+    compile group: 'org.hibernate', name: 'hibernate-validator', version: '5.4.1.Final'
+}
